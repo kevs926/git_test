@@ -1,0 +1,25 @@
+div.foldernames {
+margin-top: 10px;
+margin-bottom: 10px;
+    border-width: 5px;
+    border-style: solid;
+    border-color:  black;
+}
+
+li {
+    list-style-type: none;
+    margin-left: 20px;
+}
+
+a {
+    display: block;
+    margin-left: 20px;
+}
+
+p {
+    margin: 20px;
+    display: block;
+    width: 1000px;
+    height: auto;
+    font-family: 'Courier New', Courier, monospace;
+}
