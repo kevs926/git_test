@@ -44,14 +44,9 @@ function getYoutubeUrl(fileName) {
   } else return "";
 }
 
-// printTargetFolders();
-// printYoutubeUrl();
-// groupYoutubeUrl();
-// printYoutubedownloaderCode();
-
 function processText(fullText) {
   const splitTextArray = readLines(fullText);
-  for (let index = 0; index < splitTextArray.length-1; index++) {
+  for (let index = 0; index < splitTextArray.length - 1; index++) {
     const splitText = splitTextArray[index];
     const deeperSplitArray = splitText.split("\\");
     const fileName = deeperSplitArray[deeperSplitArray.length - 1];
@@ -140,7 +135,59 @@ function printLibrary(myArray) {
   }
 }
 
+function processResponseTitle(res, youtubeUrl,counter) {
+  targetElement = document.querySelector(`[href="${youtubeUrl}"]`);
+  if (targetElement == null) {
+    fetchLoop(counter+1);
+  } else {
+    if (res.title == null || res.title == undefined) {
+      targetElement.classList.add("error");
+      console.log(res + " " + youtubeUrl)
+    } else if (targetElement.textContent.substr(0,res.title.length) != res.title) {
+      targetElement.classList.add("differentname");
+    } else {
+      targetElement.classList.add("samename");
+    }
+    fetchLoop(counter+1)
+  }
+}
+
+function checkError(res,counter) {
+  if (res.ok) {
+    return res.json();
+  } else {
+    return res.text()
+  }
+  //  throw new Error("Something went wrong");
+}
+
+function displayStatus(youtubeUrl,counter) {
+  fetch("https://www.youtube.com/oembed?url=" + youtubeUrl + "&format=json")
+    .then((res) => checkError(res,counter))
+    .then((res) => processResponseTitle(res, youtubeUrl,counter));
+  /*     .catch((error) => {
+      console.log(error);
+    }); */
+}
+
+function fetchLoop(counter) {
+  if ((counter == myArray.length)) { // 500)){//
+    console.log("done")
+  } else {
+    if (myArray[counter].youtubeUrl == "") {
+      fetchLoop(counter + 1);
+    } else {
+      displayStatus(myArray[counter].youtubeUrl, counter);
+    }
+  }
+}
+
+function printStatus() {
+  fetchLoop(0);
+}
+
 readFile().then((value) => {
   processText(value);
   printLibrary(myArray);
+  printStatus();
 });

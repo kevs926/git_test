@@ -4,6 +4,8 @@ margin-bottom: 10px;
     border-width: 5px;
     border-style: solid;
     border-color:  black;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 li {
@@ -14,6 +16,9 @@ li {
 a {
     display: block;
     margin-left: 20px;
+    width: fit-content;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 p {
@@ -22,4 +27,22 @@ p {
     width: 1000px;
     height: auto;
     font-family: 'Courier New', Courier, monospace;
+}
+
+a.samename {
+    border: aqua;
+    border-width: 2px;
+    border-style: solid;
+}
+
+a.differentname {
+    border: rgb(176, 179, 46);
+    border-width: 2px;
+    border-style: solid;
+}
+
+a.error {
+    border: rgb(170, 57, 37);
+    border-width: 2px;
+    border-style: solid;
 }
