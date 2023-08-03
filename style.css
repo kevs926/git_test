@@ -41,8 +41,40 @@ a.differentname {
     border-style: solid;
 }
 
+a.unauth {
+    border: rgb(216, 116, 22);
+    border-width: 2px;
+    border-style: solid;
+}
+
+
 a.error {
     border: rgb(170, 57, 37);
     border-width: 2px;
     border-style: solid;
 }
+
+.tooltip {
+    position: relative;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 0%;
+    margin-left: 0px;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
