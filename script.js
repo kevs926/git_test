@@ -149,10 +149,19 @@ function processResponseTitle(res, youtubeUrl,counter) {
     fetchLoop(counter+1);
   } else {
     if (res == "Unauthorized") {
-      targetElement.classList.add("unauth")
+      targetElement.classList.add("error")
       addTooltip(targetElement, "Unauthorized")
+    }else if (res == "Bad Request") {
+      targetElement.classList.add("error")
+      addTooltip(targetElement, "Instagram or Twitch")
+    }else if (res == "Not Found") {
+      targetElement.classList.add("error")
+      addTooltip(targetElement, "Removed")
+    }else if (res == "Forbidden") {
+      targetElement.classList.add("error")
+      addTooltip(targetElement, "Private")
     }else if (res.title == null || res.title == undefined) {
-      targetElement.classList.add("error");
+      targetElement.classList.add("new-error");
       console.log(res + " " + youtubeUrl)
     } else if (targetElement.textContent.substr(0,res.title.length) != res.title) {
       targetElement.classList.add("differentname");
