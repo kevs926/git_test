@@ -149,8 +149,8 @@ function processResponseTitle(res, youtubeUrl,counter) {
     fetchLoop(counter+1);
   } else {
     if (res == "Unauthorized") {
-      targetElement.classList.add("error")
-      addTooltip(targetElement, "Unauthorized")
+      targetElement.classList.add("needcheck")
+      addTooltip(targetElement, "Check in Youtube.com")
     }else if (res == "Bad Request") {
       targetElement.classList.add("error")
       addTooltip(targetElement, "Instagram or Twitch")
@@ -164,7 +164,7 @@ function processResponseTitle(res, youtubeUrl,counter) {
       targetElement.classList.add("new-error");
       console.log(res + " " + youtubeUrl)
     } else if (targetElement.textContent.substr(0,res.title.length) != res.title) {
-      targetElement.classList.add("differentname");
+      targetElement.classList.add("needcheck");
       addTooltip(targetElement, res.title)
     } else {
       targetElement.classList.add("samename");
